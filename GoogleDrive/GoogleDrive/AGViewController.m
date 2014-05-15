@@ -76,11 +76,11 @@
         config.scopes = @[@"https://www.googleapis.com/auth/drive"];
     }];
     
-    [_restAuthzModule requestAccessSuccess:^(id object) {
+//    [_restAuthzModule requestAccessSuccess:^(id object) {
         [self fetchGoogleDriveDocuments:_restAuthzModule];
-    } failure:^(NSError *error) {
-        NSLog(@"Failure in getting access token");
-    }];
+//    } failure:^(NSError *error) {
+//        NSLog(@"Failure in getting access token");
+//    }];
 }
 
 - (IBAction)refreshDocument:(id)sender {
