@@ -99,15 +99,11 @@
 }
 
 -(void)oauthFacebook {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *accountId = [prefs stringForKey:@"facebook"];
-    
-    // Create an accoutn and an authzmodule
+    // Create an account and an authzmodule
     _facebookAuthzModule = [accountManager authz:^(id<AGAuthzConfig> config) {
-        config.accountId = accountId;
         config.name = @"restAuthMod";
-        config.baseURL = [[NSURL alloc] init];
-        config.authzEndpoint = @"https://www.facebook.com/dialog/oauth";
+        config.baseURL = [NSURL URLWithString:@"https://www.facebook.com"];
+        config.authzEndpoint = @"/dialog/oauth";
         config.accessTokenEndpoint = @"https://graph.facebook.com/oauth/access_token";
         config.clientId = @"XXX";
         config.clientSecret = @"27c1f30169956c38169e668345b35229";
@@ -116,9 +112,8 @@
         config.type = @"AG_OAUTH2_FACEBOOK";
 
     }];
-    _accounts[@"facebook"] = _facebookAuthzModule.accountId;
-    [prefs setObject:_facebookAuthzModule.accountId forKey:@"facebook"];
-    
+    _accounts[@"facebook"] = _facebookAuthzModule;
+
     [_facebookAuthzModule requestAccessSuccess:^(id response) {
         
         [self shareWithFacebook];
@@ -132,11 +127,7 @@
 }
 
 -(void)oauthGoogle {
-    NSUserDefaults *prefs = [NSUserDefaults standardUserDefaults];
-    NSString *accountId = [prefs stringForKey:@"google"];
-    
     _googleAuthzModule = [accountManager authz:^(id<AGAuthzConfig> config) {
-        config.accountId = accountId;
         config.name = @"restAuthMod";
         config.baseURL = [[NSURL alloc] initWithString:@"https://accounts.google.com"];
         config.authzEndpoint = @"/o/oauth2/auth";
@@ -146,8 +137,7 @@
         config.scopes = @[@"https://www.googleapis.com/auth/drive"];
         config.type = @"AG_OAUTH2";
     }];
-    _accounts[@"google"] = _googleAuthzModule.accountId;
-    [prefs setObject:_googleAuthzModule.accountId forKey:@"google"];
+    _accounts[@"google"] = _googleAuthzModule;
     
     [_googleAuthzModule requestAccessSuccess:^(id response) {
         [self shareWithGoogleDrive];
