@@ -1,5 +1,7 @@
 xcodeproj 'GoogleDrive.xcodeproj'
 platform :ios, '7.0'
-         
-pod 'AeroGear',  :git => 'https://github.com/aerogear/aerogear-ios.git'
+      
+pod 'AeroGear-Store',  :git => 'https://github.com/corinnekrych/aerogear-ios-store.git'
+pod 'AeroGear-Pipe',  :git => 'https://github.com/corinnekrych/aerogear-ios-pipe.git'
+pod 'AeroGear-OAuth',  :git => 'https://github.com/corinnekrych/aerogear-ios-oauth.git'
 pod 'SVProgressHUD', '1.0'

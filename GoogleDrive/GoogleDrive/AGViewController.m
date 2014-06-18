@@ -16,7 +16,9 @@
  */
 
 #import "AGViewController.h"
-#import "AeroGear.h"
+#import "AeroGear-OAuth.h"
+#import "AeroGear-Pipe.h"
+#import "AeroGear-Store.h"
 #import <AssetsLibrary/AssetsLibrary.h>
 #import <MobileCoreServices/MobileCoreServices.h>
 #import "SVProgressHUD.h"

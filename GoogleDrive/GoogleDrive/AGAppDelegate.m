@@ -16,7 +16,7 @@
  */
 
 #import "AGAppDelegate.h"
-#import <AeroGear.h>
+#import <AeroGear-OAuth.h>
 
 @implementation AGAppDelegate
 
