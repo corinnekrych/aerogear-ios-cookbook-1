@@ -236,7 +236,7 @@ public class TrustedPersistantOAuth2Session: OAuth2Session {
         self.keychain = KeychainWrap()
         // TODO Shoot config to reset all keychain + choose ACL type: with or without touchID
         // for now to clear keychain contain for your app uncomment line below
-        //self.keychain.resetKeychain()
+        self.keychain.resetKeychain()
         self.accessToken = accessToken
         self.refreshToken = refreshToken
     }

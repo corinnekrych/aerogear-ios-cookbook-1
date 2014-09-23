@@ -56,11 +56,12 @@ public class Http {
                     }
                     var httpResponse = response as NSHTTPURLResponse
                     if (    (httpResponse.statusCode == 401  /* Unauthorized */
-                          || httpResponse.statusCode == 400) /* Bad Request */
+                          || httpResponse.statusCode == 400 || httpResponse.statusCode == 500) /* Bad Request */
                         && self.authzModule != nil) {
                             // replay request with authz set
                             self.authzModule!.requestAccess({ (response, error) in
                                 // replay request
+                                println("request access")
                                 self.call(self.baseURL, method: method, parameters: parameters, completionHandler: completionHandler)
 
                             })

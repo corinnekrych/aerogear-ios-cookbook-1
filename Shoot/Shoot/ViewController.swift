@@ -83,7 +83,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         })
         alertController.addAction(google)
         let facebook = UIAlertAction(title: "Facebook", style: .Default, handler: { (action) in
-            self.self.shareWithFacebook()
+            //self.self.shareWithFacebook()
+            self.shareWithKeycloak()
         })
         alertController.addAction(facebook)
         
@@ -99,6 +100,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let fbModule =  AccountManager.addFacebookAccount(facebookConfig)
         let http = Http(url: "https://graph.facebook.com/me/photos")
         http.authzModule = fbModule
+        
+        self.performUpload(http)
+    }
+    
+    func shareWithKeycloak() {
+        println("Perform photo upload with Keycloak")
+        
+        var config = Config(base: "http://192.168.0.37:8080/auth",
+                    authzEndpoint: "realms/shoot/tokens/login",
+                    redirectURL: "org.aerogear.Shoot://oauth2Callback",
+                    accessTokenEndpoint: "realms/shoot/tokens/access/codes",
+                    clientId: "shootoauth2",
+                    //refreshTokenEndpoint: "realms/shoot/tokens/refresh",
+                    revokeTokenEndpoint: "realms/shoot/tokens/logout")
+        let kcModule = OAuth2Module(config: config)
+        
+        let http = Http(url: "http://192.168.0.37:8080/shoot/rest/portal/upload")
+        http.authzModule = kcModule
         
         self.performUpload(http)
     }
@@ -132,9 +151,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
                 println("Error uploading file: \(error)")
             } else {
                 
-                println("Successfully uploaded: " + response!.description)
+                println("Successfully uploaded: ")
             }
-        })
+       })
+//        http.GET(completionHandler: {(response, error) in
+//            if error != nil {
+//                println("GET sucess \(error!)")
+//            } else {
+//                println("GET sucess \(response!)")
+//            }
+//        })
     }
     
     // MARK - UIImagePickerControllerDelegate
