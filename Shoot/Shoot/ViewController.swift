@@ -86,6 +86,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             self.self.shareWithFacebook()
         })
         alertController.addAction(facebook)
+        let keycloak = UIAlertAction(title: "MyKeycloak", style: .Default, handler: { (action) in
+            self.self.shareWithKeycloak()
+        })
+        alertController.addAction(keycloak)
         
     }
     
@@ -116,6 +120,24 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
         self.performUpload(http)
     }
+    
+    func shareWithKeycloak() {
+        println("Perform photo upload with Keycloak")
+        
+        var config = Config(base: "http://192.168.0.37:8080/auth",
+            authzEndpoint: "realms/shoot/tokens/login",
+            redirectURL: "org.aerogear.Shoot://oauth2Callback",
+            accessTokenEndpoint: "realms/shoot/tokens/access/codes",
+            clientId: "shootoauth2",
+            refreshTokenEndpoint: "realms/shoot/tokens/refresh",
+            revokeTokenEndpoint: "realms/shoot/tokens/logout")
+        let kcModule = OAuth2Module(config: config)
+        
+        let http = Http(url: "http://192.168.0.37:8080/shootoauth2/rest/portal/upload")
+        http.authzModule = kcModule
+        
+        self.performUpload(http)
+    }
 
     func performUpload(http: Http) {
         // extract the image filename
@@ -131,8 +153,9 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             if (error != nil) {
                 println("Error uploading file: \(error)")
             } else {
-                
-                println("Successfully uploaded: " + response!.description)
+                if response != nil {
+                    println("Successfully uploaded: " + response!.description)
+                }
             }
         })
     }
