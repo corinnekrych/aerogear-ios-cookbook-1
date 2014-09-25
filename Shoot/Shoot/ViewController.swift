@@ -96,8 +96,8 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func shareWithFacebook() {
         println("Perform photo upload with Facebook")
         let facebookConfig = FacebookConfig(
-            clientId: "YYY",
-            clientSecret: "XXX",
+            clientId: "765891443445434",
+            clientSecret: "e489a7b0a034df9e57bf8c2a9d74fd26",
             scopes:["photo_upload, publish_actions"])
         
         let fbModule =  AccountManager.addFacebookAccount(facebookConfig)

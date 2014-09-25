@@ -114,6 +114,7 @@
 		48F709FD19B59E9800DDB152 /* Shoot */ = {
 			isa = PBXGroup;
 			children = (
+				48F709FF19B59E9800DDB152 /* Info.plist */,
 				48F70A0019B59E9800DDB152 /* AppDelegate.swift */,
 				48F70A0219B59E9800DDB152 /* ViewController.swift */,
 				48F70A0419B59E9800DDB152 /* Main.storyboard */,
@@ -129,7 +130,6 @@
 				48478CB519BF26FF00983D79 /* Security.framework */,
 				48F70A7019B6F11700DDB152 /* AeroGearOAuth2 */,
 				48F70A6F19B6F10C00DDB152 /* AeroGearHttp */,
-				48F709FF19B59E9800DDB152 /* Info.plist */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
