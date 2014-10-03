@@ -134,7 +134,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     func shareWithKeycloak() {
         println("Perform photo upload with Keycloak")
         
-        var keycloakConfig = Config(base: "http://localhost:8080/auth",
+        var keycloakConfig = Config(base: "http://192.168.0.37:8080/auth",
             authzEndpoint: "realms/shoot-realm/tokens/login",
             redirectURL: "org.aerogear.Shoot://oauth2Callback",
             accessTokenEndpoint: "realms/shoot-realm/tokens/access/codes",
@@ -143,7 +143,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             revokeTokenEndpoint: "realms/shoot-realm/tokens/logout")
 
         let gdModule = AccountManager.addAccount(keycloakConfig, moduleClass: KeycloakOAuth2Module.self)
-        let http = Http(url: "http://localhost:8080/shoot/rest/photos")
+        let http = Http(url: "http://192.168.0.37:8080/shoot/rest/photos")
         http.authzModule = gdModule
         self.performUpload(http, parameters: self.extractImageAsMultipartParams())
         
@@ -151,6 +151,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     func performUpload(http: Http, parameters: [String: AnyObject]?) {
         http.POST(parameters: parameters, completionHandler: {(response, error) in
+            println("RESPONSE \(response)")
             if (error != nil) {
                 self.presentAlert("Error", message: error!.localizedDescription)
             } else {

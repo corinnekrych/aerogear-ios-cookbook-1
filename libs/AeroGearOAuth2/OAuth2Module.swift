@@ -136,6 +136,8 @@ public class OAuth2Module: AuthzModule {
                 let expiration = unwrappedResponse["expires_in"] as NSNumber
                 let exp: String = expiration.stringValue
                 
+                println("TOKEN \(accessToken)")
+                
                 self.oauth2Session.saveAccessToken(accessToken, refreshToken: refreshToken, expiration: exp)
                 completionHandler(accessToken, nil)
             }
