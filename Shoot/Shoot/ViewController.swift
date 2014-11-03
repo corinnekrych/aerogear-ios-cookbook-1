@@ -123,27 +123,12 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func shareWithFacebook() {
         println("Perform photo upload with Facebook")
-        let facebookConfig = FacebookConfig(
-            clientId: "765891443445434",
-            clientSecret: "e489a7b0a034df9e57bf8c2a9d74fd26",
-            scopes:["photo_upload, publish_actions"])
-        
-        let fbModule =  AccountManager.addFacebookAccount(facebookConfig)
-        self.http.authzModule = fbModule
-        
-        self.performUpload("https://graph.facebook.com/me/photos",  parameters: self.extractImageAsMultipartParams())
+
     }
     
     func shareWithGoogleDrive() {
         println("Perform photo upload with Google")
-        
-        let googleConfig = GoogleConfig(
-            clientId: "873670803862-g6pjsgt64gvp7r25edgf4154e8sld5nq.apps.googleusercontent.com",
-            scopes:["https://www.googleapis.com/auth/drive"])
 
-        let gdModule = AccountManager.addGoogleAccount(googleConfig)
-        self.http.authzModule = gdModule
-        self.performUpload("https://www.googleapis.com/upload/drive/v2/files", parameters: self.extractImageAsMultipartParams())
     }
     
     func shareWithKeycloak() {
@@ -152,15 +137,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
     }
 
-    func performUpload(url: String, parameters: [String: AnyObject]?) {
-        self.http.POST(url, parameters: parameters, completionHandler: {(response, error) in
-            if (error != nil) {
-                self.presentAlert("Error", message: error!.localizedDescription)
-            } else {
-                self.presentAlert("Success", message: "Successfully uploaded!")
-            }
-        })
-    }
+
     
     // MARK - UIImagePickerControllerDelegate
     
