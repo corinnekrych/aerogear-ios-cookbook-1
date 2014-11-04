@@ -147,7 +147,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     func shareWithKeycloak() {
-        println("TODO:::Perform photo upload with Keycloak")
+        println("Perform photo upload with Keycloak")
         
         var keycloakConfig = Config(base: "http://localhost:8080/auth",
             authzEndpoint: "realms/shoot-realm/tokens/login",
