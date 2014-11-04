@@ -181,4 +181,15 @@ public class AccountManager {
     public class func addGoogleAccount(config: GoogleConfig) -> OAuth2Module {
         return addAccount(config, moduleClass: OAuth2Module.self)
     }
+    
+    /**
+    convenient method to retrieve a google oauth2 module ready to be used
+    
+    :param: config a google configuration object. See GoogleConfig
+    
+    :returns: a google OAuth2 module
+    */
+    public class func addKeycloakAccount(config: KeycloakConfig) -> OAuth2Module {
+        return addAccount(config, moduleClass: KeycloakOAuth2Module.self)
+    }
 }

@@ -131,36 +131,26 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         let fbModule =  AccountManager.addFacebookAccount(facebookConfig)
         self.http.authzModule = fbModule
         
-        self.performUpload("https://graph.facebook.com/me/photos",  parameters: self.extractImageAsMultipartParams())
+        self.http.POST("https://graph.facebook.com/me/photos", parameters: self.extractImageAsMultipartParams(), completionHandler: {(response, error) in
+            if (error != nil) {
+                self.presentAlert("Error", message: error!.localizedDescription)
+            } else {
+                self.presentAlert("Success", message: "Successfully uploaded!")
+            }
+        })
+
     }
     
     func shareWithGoogleDrive() {
         println("Perform photo upload with Google")
-        
         let googleConfig = GoogleConfig(
             clientId: "873670803862-g6pjsgt64gvp7r25edgf4154e8sld5nq.apps.googleusercontent.com",
             scopes:["https://www.googleapis.com/auth/drive"])
-
+        
         let gdModule = AccountManager.addGoogleAccount(googleConfig)
         self.http.authzModule = gdModule
-        self.performUpload("https://www.googleapis.com/upload/drive/v2/files", parameters: self.extractImageAsMultipartParams())
-    }
-    
-    func shareWithKeycloak() {
-        println("Perform photo upload with Keycloak")
         
-        let keycloakConfig = KeycloakConfig(
-            clientId: "shoot-third-party",
-            host: "http://localhost:8080",
-            realm: "shoot-realm")
-        
-        let gdModule = AccountManager.addAccount(keycloakConfig, moduleClass: KeycloakOAuth2Module.self)
-        self.http.authzModule = gdModule
-        self.performUpload("http://localhost:8080/shoot/rest/photos", parameters: self.extractImageAsMultipartParams())
-    }
-
-    func performUpload(url: String, parameters: [String: AnyObject]?) {
-        self.http.POST(url, parameters: parameters, completionHandler: {(response, error) in
+        self.http.POST("https://www.googleapis.com/upload/drive/v2/files", parameters: self.extractImageAsMultipartParams(), completionHandler: {(response, error) in
             if (error != nil) {
                 self.presentAlert("Error", message: error!.localizedDescription)
             } else {
@@ -168,6 +158,25 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }
         })
     }
+    
+    func shareWithKeycloak() {
+        println("Perform photo upload with Keycloak")
+        let keycloakConfig = KeycloakConfig(
+            clientId: "shoot-third-party",
+            host: "http://localhost:8080",
+            realm: "shoot-realm")
+        let keyModule = AccountManager.addKeycloakAccount(keycloakConfig)
+        self.http.authzModule = keyModule
+        
+        self.http.POST("http://localhost:8080/shoot/rest/photos", parameters: self.extractImageAsMultipartParams()) { (resp: AnyObject?, error: NSError?) -> Void in
+            if error != nil {
+                self.presentAlert("Keyclaok", message: "Error!")
+            } else {
+                self.presentAlert("Keyclaok", message: "Successfully uploaded!")
+            }
+        }
+    }
+
     
     // MARK - UIImagePickerControllerDelegate
     
