@@ -17,7 +17,6 @@
 
 import Foundation
 import UIKit
-import AeroGearHttp
 
 /**
 Notification constants emitted during oauth authorization flow
