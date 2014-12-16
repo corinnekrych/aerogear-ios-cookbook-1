@@ -7,10 +7,14 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4803C3A91A3F7FF6001C3A85 /* SharingService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4803C3A81A3F7FF6001C3A85 /* SharingService.swift */; };
 		48478CB419BF025200983D79 /* TrustedPersistantOAuth2Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48478CB319BF025200983D79 /* TrustedPersistantOAuth2Session.swift */; };
 		48478CB619BF26FF00983D79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48478CB519BF26FF00983D79 /* Security.framework */; };
 		48478CBA19C05F0900983D79 /* UntrustedMemoryOAuth2Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48478CB919C05F0900983D79 /* UntrustedMemoryOAuth2Session.swift */; };
 		485D738B1A35F7010007D9EC /* OpenIDClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 485D738A1A35F7010007D9EC /* OpenIDClaim.swift */; };
+		487E14221A3F4F3600C88E85 /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487E14211A3F4F3600C88E85 /* ShareViewController.swift */; };
+		487E14241A3F4F3600C88E85 /* MainInterface.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 487E14231A3F4F3600C88E85 /* MainInterface.storyboard */; };
+		487E14271A3F4F3600C88E85 /* SharedExt.appex in Embed App Extensions */ = {isa = PBXBuildFile; fileRef = 487E141D1A3F4F3600C88E85 /* SharedExt.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		489710E61A260E8200D3F730 /* icons.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 489710E51A260E8200D3F730 /* icons.xcassets */; };
 		48975B8019EE802A0075EFC7 /* DateUtils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48975B7F19EE802A0075EFC7 /* DateUtils.swift */; };
 		48BC695119B9FC2B00497B4E /* StringResponseSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48BC695019B9FC2B00497B4E /* StringResponseSerializer.swift */; };
@@ -35,12 +39,18 @@
 		48F70A8A19B6F13D00DDB152 /* OAuth2Session.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48F70A8519B6F13D00DDB152 /* OAuth2Session.swift */; };
 		6F1354D919D5651F0000464E /* KeycloakOAuth2Module.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F1354D819D5651F0000464E /* KeycloakOAuth2Module.swift */; };
 		6F24AEB919D0026F002BB280 /* MultiPartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F24AEB819D0026F002BB280 /* MultiPartData.swift */; };
-		6F3DA5611A38B44700626151 /* OpenIDClaim.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F3DA5601A38B44700626151 /* OpenIDClaim.swift */; };
 		6F53F67819ED0FB100DCFC72 /* HttpRequestSerializer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F53F67719ED0FB100DCFC72 /* HttpRequestSerializer.swift */; };
 		6F53F67A19ED0FCA00DCFC72 /* Utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6F53F67919ED0FCA00DCFC72 /* Utils.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		487E14251A3F4F3600C88E85 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 48F709F319B59E9800DDB152 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 487E141C1A3F4F3600C88E85;
+			remoteInfo = SharedExt;
+		};
 		48F70A0E19B59E9800DDB152 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 48F709F319B59E9800DDB152 /* Project object */;
@@ -50,11 +60,32 @@
 		};
 /* End PBXContainerItemProxy section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		487E142B1A3F4F3600C88E85 /* Embed App Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				487E14271A3F4F3600C88E85 /* SharedExt.appex in Embed App Extensions */,
+			);
+			name = "Embed App Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
+		4803C3A81A3F7FF6001C3A85 /* SharingService.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = SharingService.swift; path = ../SharingService.swift; sourceTree = "<group>"; };
 		48478CB319BF025200983D79 /* TrustedPersistantOAuth2Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = TrustedPersistantOAuth2Session.swift; path = ../../libs/AeroGearOAuth2/TrustedPersistantOAuth2Session.swift; sourceTree = "<group>"; };
 		48478CB519BF26FF00983D79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		48478CB919C05F0900983D79 /* UntrustedMemoryOAuth2Session.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = UntrustedMemoryOAuth2Session.swift; path = ../../libs/AeroGearOAuth2/UntrustedMemoryOAuth2Session.swift; sourceTree = "<group>"; };
 		485D738A1A35F7010007D9EC /* OpenIDClaim.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = OpenIDClaim.swift; path = ../../libs/AeroGearOAuth2/OpenIDClaim.swift; sourceTree = "<group>"; };
+		487E141D1A3F4F3600C88E85 /* SharedExt.appex */ = {isa = PBXFileReference; explicitFileType = "wrapper.app-extension"; includeInIndex = 0; path = SharedExt.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		487E14201A3F4F3600C88E85 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		487E14211A3F4F3600C88E85 /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+		487E14231A3F4F3600C88E85 /* MainInterface.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainInterface.storyboard; sourceTree = "<group>"; };
+		487E142C1A3F4F4400C88E85 /* Shoot.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = Shoot.entitlements; sourceTree = "<group>"; };
+		487E142D1A3F4F4E00C88E85 /* SharedExt.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = SharedExt.entitlements; sourceTree = "<group>"; };
 		489710E51A260E8200D3F730 /* icons.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = icons.xcassets; sourceTree = "<group>"; };
 		48975B7F19EE802A0075EFC7 /* DateUtils.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = DateUtils.swift; path = ../../libs/AeroGearOAuth2/DateUtils.swift; sourceTree = "<group>"; };
 		48BC695019B9FC2B00497B4E /* StringResponseSerializer.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; name = StringResponseSerializer.swift; path = ../../libs/AeroGearHttp/StringResponseSerializer.swift; sourceTree = "<group>"; };
@@ -91,6 +122,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		487E141A1A3F4F3600C88E85 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		48F709F819B59E9800DDB152 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -109,11 +147,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		487E141E1A3F4F3600C88E85 /* SharedExt */ = {
+			isa = PBXGroup;
+			children = (
+				487E142D1A3F4F4E00C88E85 /* SharedExt.entitlements */,
+				487E14211A3F4F3600C88E85 /* ShareViewController.swift */,
+				487E14231A3F4F3600C88E85 /* MainInterface.storyboard */,
+				487E141F1A3F4F3600C88E85 /* Supporting Files */,
+			);
+			path = SharedExt;
+			sourceTree = "<group>";
+		};
+		487E141F1A3F4F3600C88E85 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				487E14201A3F4F3600C88E85 /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		48F709F219B59E9800DDB152 = {
 			isa = PBXGroup;
 			children = (
 				48F709FD19B59E9800DDB152 /* Shoot */,
 				48F70A1019B59E9800DDB152 /* ShootTests */,
+				487E141E1A3F4F3600C88E85 /* SharedExt */,
 				48F709FC19B59E9800DDB152 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -123,6 +181,7 @@
 			children = (
 				48F709FB19B59E9800DDB152 /* Shoot.app */,
 				48F70A0D19B59E9800DDB152 /* ShootTests.xctest */,
+				487E141D1A3F4F3600C88E85 /* SharedExt.appex */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -130,6 +189,8 @@
 		48F709FD19B59E9800DDB152 /* Shoot */ = {
 			isa = PBXGroup;
 			children = (
+				4803C3A81A3F7FF6001C3A85 /* SharingService.swift */,
+				487E142C1A3F4F4400C88E85 /* Shoot.entitlements */,
 				48F70A0019B59E9800DDB152 /* AppDelegate.swift */,
 				48F70A0219B59E9800DDB152 /* ViewController.swift */,
 				48F70A0419B59E9800DDB152 /* Main.storyboard */,
@@ -211,6 +272,23 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		487E141C1A3F4F3600C88E85 /* SharedExt */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 487E142A1A3F4F3600C88E85 /* Build configuration list for PBXNativeTarget "SharedExt" */;
+			buildPhases = (
+				487E14191A3F4F3600C88E85 /* Sources */,
+				487E141A1A3F4F3600C88E85 /* Frameworks */,
+				487E141B1A3F4F3600C88E85 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = SharedExt;
+			productName = SharedExt;
+			productReference = 487E141D1A3F4F3600C88E85 /* SharedExt.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
 		48F709FA19B59E9800DDB152 /* Shoot */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 48F70A1719B59E9800DDB152 /* Build configuration list for PBXNativeTarget "Shoot" */;
@@ -218,10 +296,12 @@
 				48F709F719B59E9800DDB152 /* Sources */,
 				48F709F819B59E9800DDB152 /* Frameworks */,
 				48F709F919B59E9800DDB152 /* Resources */,
+				487E142B1A3F4F3600C88E85 /* Embed App Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				487E14261A3F4F3600C88E85 /* PBXTargetDependency */,
 			);
 			name = Shoot;
 			productName = Shoot;
@@ -255,8 +335,23 @@
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = AeroGear;
 				TargetAttributes = {
+					487E141C1A3F4F3600C88E85 = {
+						CreatedOnToolsVersion = 6.2;
+						DevelopmentTeam = 357BX7TCT5;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
+					};
 					48F709FA19B59E9800DDB152 = {
 						CreatedOnToolsVersion = 6.0;
+						DevelopmentTeam = 357BX7TCT5;
+						SystemCapabilities = {
+							com.apple.ApplicationGroups.iOS = {
+								enabled = 1;
+							};
+						};
 					};
 					48F70A0C19B59E9800DDB152 = {
 						CreatedOnToolsVersion = 6.0;
@@ -279,11 +374,20 @@
 			targets = (
 				48F709FA19B59E9800DDB152 /* Shoot */,
 				48F70A0C19B59E9800DDB152 /* ShootTests */,
+				487E141C1A3F4F3600C88E85 /* SharedExt */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		487E141B1A3F4F3600C88E85 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				487E14241A3F4F3600C88E85 /* MainInterface.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		48F709F919B59E9800DDB152 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -308,6 +412,14 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		487E14191A3F4F3600C88E85 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				487E14221A3F4F3600C88E85 /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		48F709F719B59E9800DDB152 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -315,6 +427,7 @@
 				48F70A0319B59E9800DDB152 /* ViewController.swift in Sources */,
 				48F70A8A19B6F13D00DDB152 /* OAuth2Session.swift in Sources */,
 				48F70A0119B59E9800DDB152 /* AppDelegate.swift in Sources */,
+				4803C3A91A3F7FF6001C3A85 /* SharingService.swift in Sources */,
 				48478CBA19C05F0900983D79 /* UntrustedMemoryOAuth2Session.swift in Sources */,
 				48BC695319B9FDAE00497B4E /* FacebookOAuth2Module.swift in Sources */,
 				6F53F67819ED0FB100DCFC72 /* HttpRequestSerializer.swift in Sources */,
@@ -347,6 +460,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		487E14261A3F4F3600C88E85 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 487E141C1A3F4F3600C88E85 /* SharedExt */;
+			targetProxy = 487E14251A3F4F3600C88E85 /* PBXContainerItemProxy */;
+		};
 		48F70A0F19B59E9800DDB152 /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 48F709FA19B59E9800DDB152 /* Shoot */;
@@ -374,6 +492,40 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		487E14281A3F4F3600C88E85 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SharedExt/SharedExt.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				INFOPLIST_FILE = SharedExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		487E14291A3F4F3600C88E85 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = SharedExt/SharedExt.entitlements;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
+				INFOPLIST_FILE = SharedExt/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 8.0;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks @executable_path/../../Frameworks";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		48F70A1519B59E9800DDB152 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -458,6 +610,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Shoot/Shoot.entitlements;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Shoot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -469,6 +623,8 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_LAUNCHIMAGE_NAME = LaunchImage;
+				CODE_SIGN_ENTITLEMENTS = Shoot/Shoot.entitlements;
+				EMBEDDED_CONTENT_CONTAINS_SWIFT = YES;
 				INFOPLIST_FILE = Shoot/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -512,6 +668,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		487E142A1A3F4F3600C88E85 /* Build configuration list for PBXNativeTarget "SharedExt" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				487E14281A3F4F3600C88E85 /* Debug */,
+				487E14291A3F4F3600C88E85 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		48F709F619B59E9800DDB152 /* Build configuration list for PBXProject "Shoot" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

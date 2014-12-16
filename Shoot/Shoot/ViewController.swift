@@ -27,43 +27,29 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     var newMedia: Bool = true
     var zoomImage = (camera: true, display: true)
     var keycloakURL:String = NSUserDefaults.standardUserDefaults().stringForKey("key_url") ?? ""
-    var http: Http!
-    @IBOutlet weak var imageView: UIImageView!
 
+    @IBOutlet weak var imageView: UIImageView!
     
     required init(coder aDecoder: NSCoder) {
         super.init(coder: aDecoder)
     }
 
-
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-
         // Let's register for settings update notification
         NSNotificationCenter.defaultCenter().addObserver(self, selector: "handleSettingsChangedNotification",
             name: NSUserDefaultsDidChangeNotification, object: nil)
-        
-        
-        self.http = Http()
         self.useCamera()
-
     }
     
     deinit {
         NSNotificationCenter.defaultCenter().removeObserver(self)
     }
     
-    
     func handleSettingsChangedNotification() {
-        
         let userDefaults = NSUserDefaults.standardUserDefaults()
         let clear = userDefaults.boolForKey("clearShootKeychain")
-        
         self.keycloakURL = userDefaults.stringForKey("key_url") ?? ""
-        
-        println("changed settings \(keycloakURL)")
-        
         if clear {
             println("clearing keychain")
             let kc = KeychainWrap()
@@ -124,55 +110,17 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     }
     
     @IBAction func shareWithFacebook() {
-        println("Perform photo upload with Facebook")
-        let facebookConfig = FacebookConfig(
-            clientId: "YYY",
-            clientSecret: "XXX",
-            scopes:["photo_upload, publish_actions"])
-        
-        let fbModule =  AccountManager.addFacebookAccount(facebookConfig)
-        self.http.authzModule = fbModule
-        
-        self.performUpload("https://graph.facebook.com/me/photos",  parameters: self.extractImageAsMultipartParams())
+        SharingService.sharedService.shareWithFacebook(self.imageView.image!)
     }
     
     @IBAction func shareWithGoogleDrive() {
-        println("Perform photo upload with Google")
-        
-        let googleConfig = GoogleConfig(
-            clientId: "873670803862-g6pjsgt64gvp7r25edgf4154e8sld5nq.apps.googleusercontent.com",
-            scopes:["https://www.googleapis.com/auth/drive"])
-
-        let gdModule = AccountManager.addGoogleAccount(googleConfig)
-        self.http.authzModule = gdModule
-        self.performUpload("https://www.googleapis.com/upload/drive/v2/files", parameters: self.extractImageAsMultipartParams())
+        SharingService.sharedService.shareWithGoogleDrive(self.imageView.image!)
     }
     
     @IBAction func shareWithKeycloak() {
-        println("Perform photo upload with Keycloak")
-        if self.keycloakURL != "" {
-        let keycloakConfig = KeycloakConfig(
-            clientId: "shoot-third-party",
-            host: "\(self.keycloakURL)",
-            realm: "shoot-realm")
-        
-        let gdModule = AccountManager.addKeycloakAccount(keycloakConfig)
-        self.http.authzModule = gdModule
-        self.performUpload("\(self.keycloakURL)/shoot/rest/photos", parameters: self.extractImageAsMultipartParams())
-        } else {
-            println("Keycloak URL should be filled")
-        }
+        SharingService.sharedService.shareWithKeycloak(self.imageView.image!)
     }
 
-    func performUpload(url: String, parameters: [String: AnyObject]?) {
-        self.http.POST(url, parameters: parameters, completionHandler: {(response, error) in
-            if (error != nil) {
-                self.presentAlert("Error", message: error!.localizedDescription)
-            } else {
-                self.presentAlert("Success", message: "Successfully uploaded!")
-            }
-        })
-    }
     
     // MARK - UIImagePickerControllerDelegate
     
@@ -194,8 +142,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             }, failureBlock: {
                 (error: NSError!) in
                 println("Error \(error)")
-            }
-            )
+            })
         }
     }
     
@@ -215,18 +162,6 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
     
     func imagePickerControllerDidCancel(picker: UIImagePickerController) {
         self.dismissViewControllerAnimated(true, completion:nil)
-    }
-    
-    func extractImageAsMultipartParams() -> [String: AnyObject] {
-        // extract the image filename
-        let filename = self.imageView.accessibilityIdentifier;
-        
-        let multiPartData = MultiPartData(data: UIImageJPEGRepresentation(self.imageView.image, 0.2),
-            name: "image",
-            filename: filename,
-            mimeType: "image/jpg")
-        
-        return ["file": multiPartData]
     }
     
     func presentAlert(title: String, message: String) {
