@@ -25,6 +25,7 @@ Each recipe is a complete iOS app. The goal of the recipes is to show you how ea
 | [ChuckNorrisJokes](ChuckNorrisJokes/README.md): Simple demo for http usage and serialization | **http** | - | - |
 | [Jedi](Jedi/README.md): websocket based synchronization based DiffMatchPatch algo. Declined in 2 versions: JsonPatch RFC based or DiffMatchPatch text based.| **sync** | - | - |
 | [Shoot](Shoot/README.md): oauth2 sharing photo, web-app to display photos | http, **oauth2** | - | - |
+| [Incognito](Incognito/README.md): oauth1 sharing photo via Twitter | http, **oauth1, social** | - | - |
 | [SharedShoot](SharedShoot/README.md): login using OpenId Connect to download Shoot'nShare photos | http, **oauth2** | - | - |
 | [Weather](Weather/README.md): geo-loation based app to fetch information using http lib | **http** | - | - |
 
