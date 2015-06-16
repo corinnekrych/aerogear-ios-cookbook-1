@@ -18,25 +18,25 @@
 import UIKit
 
 import AeroGearHttp
-import AeroGearJsonSZ
+//import AeroGearJsonSZ
 
 class MasterViewController: UITableViewController {
 
     var http = Http()
-    var data: [Joke] = []
-    var serializer = JsonSZ()
+    //var data: [Joke] = []
+    //var serializer = JsonSZ()
     
     func addRandomJokeToTableView() -> () {
-        var joke: String
+        //var joke: String
         http.GET("http://api.icndb.com/jokes/random/", completionHandler: { (response, error) -> Void in
              if error != nil {
-                println("An error has occured during read! \(error!)")
+                print("An error has occured during read! \(error!)")
                 return;
             }
             
             if  let obj = response as? [String: AnyObject] {
-                    let joke = self.serializer.fromJSON(obj["value"]!, to: Joke.self)
-                    self.data.append(joke)
+                    //let joke = self.serializer.fromJSON(obj["value"]!, to: Joke.self)
+                    //self.data.append(joke)
                     self.tableView.reloadData()
             }
         })
@@ -53,21 +53,21 @@ class MasterViewController: UITableViewController {
         addRandomJokeToTableView()
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return data.count
+        return 1//data.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCellWithIdentifier("BasicCell", forIndexPath: indexPath) as! BasicCell
 
-        let joke = data[indexPath.row]
-        cell.titleLabel.text = "Joke #\(joke.id)"
-        cell.subtitleLabel.text = joke.joke
-        cell.tag = indexPath.row
+        //let joke = data[indexPath.row]
+        //cell.titleLabel.text = "Joke #\(joke.id)"
+        //cell.subtitleLabel.text = joke.joke
+        //cell.tag = indexPath.row
         
         return cell
     }
 }
-
+/*
 class Joke: JSONSerializable {
     var id: Int = 0
     var joke: String = ""
@@ -86,7 +86,7 @@ class Joke: JSONSerializable {
 
 }
 
-extension Joke: Printable {
+extension Joke: CustomStringConvertible {
     var description: String {
         get {
             var description = ">>"
@@ -97,3 +97,4 @@ extension Joke: Printable {
     }
 }
 
+*/
