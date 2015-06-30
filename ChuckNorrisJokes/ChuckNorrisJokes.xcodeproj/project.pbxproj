@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 46;
+	objectVersion = 47;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -13,7 +13,6 @@
 		48FF4B1C1A91F9E5003857E2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 48FF4B1A1A91F9E5003857E2 /* Main.storyboard */; };
 		48FF4B1E1A91F9E5003857E2 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 48FF4B1D1A91F9E5003857E2 /* Images.xcassets */; };
 		48FF4B2D1A91F9E5003857E2 /* ChuckNorrisJokesTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FF4B2C1A91F9E5003857E2 /* ChuckNorrisJokesTests.swift */; };
-		48FF4B371A92204E003857E2 /* BasicCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48FF4B361A92204E003857E2 /* BasicCell.swift */; };
 		79D73D5B55FA65B0EA3E4202 /* Pods.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 217C8DB6980E754F43A1C721 /* Pods.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 /* End PBXBuildFile section */
 
@@ -51,7 +50,6 @@
 		48FF4B261A91F9E5003857E2 /* ChuckNorrisJokesTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ChuckNorrisJokesTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		48FF4B2B1A91F9E5003857E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		48FF4B2C1A91F9E5003857E2 /* ChuckNorrisJokesTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChuckNorrisJokesTests.swift; sourceTree = "<group>"; };
-		48FF4B361A92204E003857E2 /* BasicCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BasicCell.swift; sourceTree = "<group>"; };
 		B1AAD19C89F4A5A8688D57E7 /* Pods.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.release.xcconfig; path = "Pods/Target Support Files/Pods/Pods.release.xcconfig"; sourceTree = "<group>"; };
 		CD02A08B92CDEB09F228EE36 /* Pods.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = Pods.debug.xcconfig; path = "Pods/Target Support Files/Pods/Pods.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -100,7 +98,6 @@
 			children = (
 				48FF4B161A91F9E5003857E2 /* AppDelegate.swift */,
 				48FF4B181A91F9E5003857E2 /* ViewController.swift */,
-				48FF4B361A92204E003857E2 /* BasicCell.swift */,
 				48FF4B1A1A91F9E5003857E2 /* Main.storyboard */,
 				48FF4B1D1A91F9E5003857E2 /* Images.xcassets */,
 				48FF4B141A91F9E5003857E2 /* Supporting Files */,
@@ -212,7 +209,7 @@
 				};
 			};
 			buildConfigurationList = 48FF4B0C1A91F9E5003857E2 /* Build configuration list for PBXProject "ChuckNorrisJokes" */;
-			compatibilityVersion = "Xcode 3.2";
+			compatibilityVersion = "Xcode 6.3";
 			developmentRegion = English;
 			hasScannedForEncodings = 0;
 			knownRegions = (
@@ -303,7 +300,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				48FF4B191A91F9E5003857E2 /* ViewController.swift in Sources */,
-				48FF4B371A92204E003857E2 /* BasicCell.swift in Sources */,
 				48FF4B171A91F9E5003857E2 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

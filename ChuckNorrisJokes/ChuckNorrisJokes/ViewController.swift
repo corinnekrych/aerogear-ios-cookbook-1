@@ -23,28 +23,30 @@ import AeroGearHttp
 class MasterViewController: UITableViewController {
 
     var http = Http()
-    //var data: [Joke] = []
+    var data: [String] = []
     //var serializer = JsonSZ()
     
     func addRandomJokeToTableView() -> () {
         //var joke: String
-        http.GET("http://api.icndb.com/jokes/random/", completionHandler: { (response, error) -> Void in
-             if error != nil {
-                print("An error has occured during read! \(error!)")
-                return;
-            }
-            
-            if  let obj = response as? [String: AnyObject] {
-                    //let joke = self.serializer.fromJSON(obj["value"]!, to: Joke.self)
-                    //self.data.append(joke)
-                    self.tableView.reloadData()
-            }
-        })
+//        http.GET("http://api.icndb.com/jokes/random/", completionHandler: { (response, error) -> Void in
+//             if error != nil {
+//                print("An error has occured during read! \(error!)")
+//                return;
+//            }
+//
+//            
+//            if  let obj = response as? [String: AnyObject] {
+//                    //let joke = self.serializer.fromJSON(obj["value"]!, to: Joke.self)
+//                    self.data.append("cccc")//joke)
+//                    self.tableView.reloadData()
+//            }
+//        })
+        self.data.append("cccc1")
+        self.tableView.reloadData()
     }
     
     override func viewDidLoad() {
-        tableView.rowHeight = UITableViewAutomaticDimension
-        tableView.estimatedRowHeight = 160.0
+
         super.viewDidLoad()
         addRandomJokeToTableView()
     }
@@ -53,14 +55,15 @@ class MasterViewController: UITableViewController {
         addRandomJokeToTableView()
     }
     override func tableView(tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1//data.count
+        return data.count
     }
 
     override func tableView(tableView: UITableView, cellForRowAtIndexPath indexPath: NSIndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCellWithIdentifier("BasicCell", forIndexPath: indexPath) as! BasicCell
+        let cell = tableView.dequeueReusableCellWithIdentifier("BasicCell", forIndexPath: indexPath)
 
-        //let joke = data[indexPath.row]
-        //cell.titleLabel.text = "Joke #\(joke.id)"
+        let joke = data[indexPath.row]
+        cell.backgroundColor = UIColor.whiteColor()
+        //cell.textLabel?.text = joke        //titleLabel.text = "Joke"//#\(joke.id)"
         //cell.subtitleLabel.text = joke.joke
         //cell.tag = indexPath.row
         
