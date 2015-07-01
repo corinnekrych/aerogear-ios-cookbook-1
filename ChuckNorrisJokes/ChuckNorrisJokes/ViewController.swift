@@ -28,21 +28,20 @@ class MasterViewController: UITableViewController {
     
     func addRandomJokeToTableView() -> () {
         //var joke: String
-//        http.GET("http://api.icndb.com/jokes/random/", completionHandler: { (response, error) -> Void in
-//             if error != nil {
-//                print("An error has occured during read! \(error!)")
-//                return;
-//            }
-//
-//            
-//            if  let obj = response as? [String: AnyObject] {
-//                    //let joke = self.serializer.fromJSON(obj["value"]!, to: Joke.self)
-//                    self.data.append("cccc")//joke)
-//                    self.tableView.reloadData()
-//            }
-//        })
-        self.data.append("cccc1")
-        self.tableView.reloadData()
+        http.GET("http://api.icndb.com/jokes/random/", completionHandler: { (response, error) -> Void in
+             if error != nil {
+                print("An error has occured during read! \(error!)")
+                return;
+            }
+
+            
+            if  let obj = response as? [String: AnyObject] {
+                    //let joke = self.serializer.fromJSON(obj["value"]!, to: Joke.self)
+                    self.data.append("cccc")//joke)
+                    self.tableView.reloadData()
+            }
+        })
+
     }
     
     override func viewDidLoad() {
