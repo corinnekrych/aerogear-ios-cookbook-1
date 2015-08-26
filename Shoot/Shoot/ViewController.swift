@@ -135,7 +135,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         var targetURL : NSURL?
         /// WebView intance used to load login page.
         var webView : UIWebView = UIWebView()
-        
+        var content: String?
 
         /// Overrride of viewDidLoad to load the login page.
         override internal func viewDidLoad() {
@@ -145,6 +145,7 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             webView.delegate = self
             self.view.addSubview(webView)
             loadAddressURL()
+            loadContent()
         }
         
         override func viewDidLayoutSubviews() {
@@ -157,8 +158,16 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
         
         func loadAddressURL() {
-            let req = NSURLRequest(URL: targetURL!)
+            if let targetURL = targetURL {
+            let req = NSURLRequest(URL: targetURL)
             webView.loadRequest(req)
+            }
+        }
+        
+        func loadContent() {
+            if let content = content {
+                webView.loadHTMLString(content, baseURL: nil)
+            }
         }
     }
 
@@ -168,9 +177,22 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         //webView.targetURL = NSURL(string: "http://192.168.0.10:8080/sales-post/")!
         //UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(webView, animated: true, completion: nil)
         
-        // test with POST messages
-        self.http.POST("http://192.168.0.10:8080/auth/realms/saml-demo/protocol/saml", parameters: ["SAMLRequest" : "HNhbWxwOkF1dGhuUmVxdWVzdCB4bWxuczpzYW1scD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOnByb3RvY29sIiB4bWxucz0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiIgQXNzZXJ0aW9uQ29uc3VtZXJTZXJ2aWNlVVJMPSJnilodHRwOi8vbG9jYWxob3N0OjgwODAvc2FsZXMtcG9zdC8iIERlc3RpbmF0aW9uPSJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvc2FtbC1kZW1vL3Byb3RvY29sL3NhbWwiIEZvcmNlQXV0aG49ImZhbHNlIiBJRD0iSURfYzVlMzQzZTUtMzliMC00MWQzLTk4ZmEtNmMzYzhmZmM0YTI0IiBJc1Bhc3NpdmU9ImZhbHNlIiBJc3N1ZUluc3RhbnQ9IjIwMTUtMDgtMjZUMTI6NTE6MTIuMTY1WiIgUHJvdG9jb2xCaW5kaW5nPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YmluZGluZ3M6SFRUUC1QT1NUIiBWZXJzaW9uPSIyLjAiPjxzYW1sOklzc3VlciB4bWxuczpzYW1sPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXNzZXJ0aW9uIj5odHRwOi8vbG9jYWxob3N0OjgwODAvc2FsZXMtcG9zdC88L3NhbWw6SXNzdWVyPjxzYW1scDpOYW1lSURQb2xpY3kgQWxsb3dDcmVhdGU9InRydWUiIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ii8+PC9zYW1scDpBdXRoblJlcXVlc3Q+"], credential: nil) { (obj:AnyObject?, err:NSError?) -> Void in
-            // todo
+        let myHttp = Http(baseURL: nil, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(), requestSerializer: HttpRequestSerializer(), responseSerializer: StringResponseSerializer())
+        
+        // step1: check if Oauthn is required
+        // TODO
+        
+        // step2: (if required) ask for authn with a POST messages containing SAML Request
+        myHttp.POST("http://localhost:8080/auth/realms/saml-demo/protocol/saml", parameters: ["SAMLRequest" : "PHNhbWxwOkF1dGhuUmVxdWVzdCB4bWxuczpzYW1scD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOnByb3RvY29sIiB4bWxucz0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiIgQXNzZXJ0aW9uQ29uc3VtZXJTZXJ2aWNlVVJMPSJodHRwOi8vbG9jYWxob3N0OjgwODAvc2FsZXMtcG9zdC8iIERlc3RpbmF0aW9uPSJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvc2FtbC1kZW1vL3Byb3RvY29sL3NhbWwiIEZvcmNlQXV0aG49ImZhbHNlIiBJRD0iSURfYzVlMzQzZTUtMzliMC00MWQzLTk4ZmEtNmMzYzhmZmM0YTI0IiBJc1Bhc3NpdmU9ImZhbHNlIiBJc3N1ZUluc3RhbnQ9IjIwMTUtMDgtMjZUMTI6NTE6MTIuMTY1WiIgUHJvdG9jb2xCaW5kaW5nPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YmluZGluZ3M6SFRUUC1QT1NUIiBWZXJzaW9uPSIyLjAiPjxzYW1sOklzc3VlciB4bWxuczpzYW1sPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXNzZXJ0aW9uIj5odHRwOi8vbG9jYWxob3N0OjgwODAvc2FsZXMtcG9zdC88L3NhbWw6SXNzdWVyPjxzYW1scDpOYW1lSURQb2xpY3kgQWxsb3dDcmVhdGU9InRydWUiIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ii8+PC9zYW1scDpBdXRoblJlcXVlc3Q+"], credential: nil) { (obj:AnyObject?, err:NSError?) -> Void in
+            // step3.: display login form
+            if let err = err {
+                println("Error \(err)")
+                return
+            }
+            println("Success in asking login form")
+            var webView = WebViewController()
+            webView.content = obj as? String
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(webView, animated: true, completion: nil)
         }
     }
 
