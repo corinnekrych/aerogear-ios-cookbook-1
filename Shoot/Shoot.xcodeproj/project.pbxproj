@@ -186,6 +186,7 @@
 		48F709F319B59E9800DDB152 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				LastSwiftUpdateCheck = 0700;
 				LastUpgradeCheck = 0600;
 				ORGANIZATIONNAME = AeroGear;
 				TargetAttributes = {

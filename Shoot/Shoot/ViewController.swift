@@ -129,17 +129,49 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
 
         self.performUpload("https://graph.facebook.com/me/photos",  parameters: self.extractImageAsMultipartParams())
     }
+    
+    class WebViewController: UIViewController, UIWebViewDelegate {
+        /// Login URL for OAuth.
+        var targetURL : NSURL?
+        /// WebView intance used to load login page.
+        var webView : UIWebView = UIWebView()
+        
+
+        /// Overrride of viewDidLoad to load the login page.
+        override internal func viewDidLoad() {
+            super.viewDidLoad()
+            
+            webView.frame = UIScreen.mainScreen().applicationFrame
+            webView.delegate = self
+            self.view.addSubview(webView)
+            loadAddressURL()
+        }
+        
+        override func viewDidLayoutSubviews() {
+            super.viewDidLayoutSubviews()
+            self.webView.frame = self.view.bounds
+        }
+        
+        override internal func didReceiveMemoryWarning() {
+            super.didReceiveMemoryWarning()
+        }
+        
+        func loadAddressURL() {
+            let req = NSURLRequest(URL: targetURL!)
+            webView.loadRequest(req)
+        }
+    }
 
     @IBAction func shareWithGoogleDrive() {
-        println("Perform photo upload with Google")
-
-        let googleConfig = GoogleConfig(
-            clientId: "<your client secret goes here.apps.googleusercontent.com>",
-            scopes:["https://www.googleapis.com/auth/drive"])
-        //googleConfig.isWebView = true
-        let gdModule = AccountManager.addGoogleAccount(googleConfig)
-        self.http.authzModule = gdModule
-        self.performUpload("https://www.googleapis.com/upload/drive/v2/files", parameters: self.extractImageAsMultipartParams())
+        println("TEST SAML Keycloak example")
+        //var webView = WebViewController()
+        //webView.targetURL = NSURL(string: "http://192.168.0.10:8080/sales-post/")!
+        //UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(webView, animated: true, completion: nil)
+        
+        // test with POST messages
+        self.http.POST("http://192.168.0.10:8080/auth/realms/saml-demo/protocol/saml", parameters: ["SAMLRequest" : "HNhbWxwOkF1dGhuUmVxdWVzdCB4bWxuczpzYW1scD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOnByb3RvY29sIiB4bWxucz0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOmFzc2VydGlvbiIgQXNzZXJ0aW9uQ29uc3VtZXJTZXJ2aWNlVVJMPSJnilodHRwOi8vbG9jYWxob3N0OjgwODAvc2FsZXMtcG9zdC8iIERlc3RpbmF0aW9uPSJodHRwOi8vbG9jYWxob3N0OjgwODAvYXV0aC9yZWFsbXMvc2FtbC1kZW1vL3Byb3RvY29sL3NhbWwiIEZvcmNlQXV0aG49ImZhbHNlIiBJRD0iSURfYzVlMzQzZTUtMzliMC00MWQzLTk4ZmEtNmMzYzhmZmM0YTI0IiBJc1Bhc3NpdmU9ImZhbHNlIiBJc3N1ZUluc3RhbnQ9IjIwMTUtMDgtMjZUMTI6NTE6MTIuMTY1WiIgUHJvdG9jb2xCaW5kaW5nPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YmluZGluZ3M6SFRUUC1QT1NUIiBWZXJzaW9uPSIyLjAiPjxzYW1sOklzc3VlciB4bWxuczpzYW1sPSJ1cm46b2FzaXM6bmFtZXM6dGM6U0FNTDoyLjA6YXNzZXJ0aW9uIj5odHRwOi8vbG9jYWxob3N0OjgwODAvc2FsZXMtcG9zdC88L3NhbWw6SXNzdWVyPjxzYW1scDpOYW1lSURQb2xpY3kgQWxsb3dDcmVhdGU9InRydWUiIEZvcm1hdD0idXJuOm9hc2lzOm5hbWVzOnRjOlNBTUw6Mi4wOm5hbWVpZC1mb3JtYXQ6dHJhbnNpZW50Ii8+PC9zYW1scDpBdXRoblJlcXVlc3Q+"], credential: nil) { (obj:AnyObject?, err:NSError?) -> Void in
+            // todo
+        }
     }
 
     @IBAction func shareWithKeycloak() {
