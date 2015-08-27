@@ -171,11 +171,62 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
         }
     }
 
+    func extractCode(notification: NSNotification, completionHandler: (AnyObject?, NSError?) -> Void) {
+        let url: NSURL? = (notification.userInfo as! [String: AnyObject])[UIApplicationLaunchOptionsURLKey] as? NSURL
+        
+        // extract the response from the URL
+        let response = self.parametersFromQueryString(url?.query)["SAMLResponse"]
+        // if exists perform the exchange
+        if (response != nil) {
+            completionHandler(response, nil)
+
+        } else {
+            //TODO error
+        }
+    }
+    
+    func parametersFromQueryString(queryString: String?) -> [String: String] {
+        var parameters = [String: String]()
+        if (queryString != nil) {
+            var parameterScanner: NSScanner = NSScanner(string: queryString!)
+            var name:NSString? = nil
+            var value:NSString? = nil
+            
+            while (parameterScanner.atEnd != true) {
+                name = nil;
+                parameterScanner.scanUpToString("=", intoString: &name)
+                parameterScanner.scanString("=", intoString:nil)
+                
+                value = nil
+                parameterScanner.scanUpToString("&", intoString:&value)
+                parameterScanner.scanString("&", intoString:nil)
+                
+                if (name != nil && value != nil) {
+                    parameters[name!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)!] = value!.stringByReplacingPercentEscapesUsingEncoding(NSUTF8StringEncoding)
+                }
+            }
+        }
+        
+        return parameters;
+    }
+
+    
     @IBAction func shareWithGoogleDrive() {
         println("TEST SAML Keycloak example")
         //var webView = WebViewController()
         //webView.targetURL = NSURL(string: "http://192.168.0.10:8080/sales-post/")!
         //UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(webView, animated: true, completion: nil)
+        
+        // step4. we have re-entered the app we need to extract samlresponse
+        NSNotificationCenter.defaultCenter().addObserverForName("SAMLReenterApp", object: nil, queue: nil, usingBlock: { (notification: NSNotification!) -> Void in
+            
+            self.extractCode(notification, completionHandler: {(obj: AnyObject?, err: NSError?) -> Void in
+                println("SUCCEED in extracted SAML \(obj)")
+            })
+            UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
+            
+        })
+        
         
         let myHttp = Http(baseURL: nil, sessionConfig: NSURLSessionConfiguration.defaultSessionConfiguration(), requestSerializer: HttpRequestSerializer(), responseSerializer: StringResponseSerializer())
         
@@ -194,6 +245,10 @@ class ViewController: UIViewController, UIImagePickerControllerDelegate, UINavig
             webView.content = obj as? String
             UIApplication.sharedApplication().keyWindow?.rootViewController?.presentViewController(webView, animated: true, completion: nil)
         }
+        
+        
+        
+        
     }
 
     @IBAction func shareWithKeycloak() {
