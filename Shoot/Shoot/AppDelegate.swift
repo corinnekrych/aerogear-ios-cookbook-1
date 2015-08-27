@@ -68,8 +68,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
     func application(application: UIApplication, openURL url: NSURL, sourceApplication: String?, annotation: AnyObject?) -> Bool {
-        let notification = NSNotification(name: AGAppLaunchedWithURLNotification, object:nil, userInfo:[UIApplicationLaunchOptionsURLKey:url])
+        let notification = NSNotification(name: "SAMLReenterApp", object:nil, userInfo:[UIApplicationLaunchOptionsURLKey:url])
         NSNotificationCenter.defaultCenter().postNotification(notification)
+        // dismiss webview
+        UIApplication.sharedApplication().keyWindow?.rootViewController?.dismissViewControllerAnimated(true, completion: nil)
         return true
     }
 }
