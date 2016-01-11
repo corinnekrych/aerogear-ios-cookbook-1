@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		48CB69B11C43AA6E00B45D53 /* AeroGearSyncClientJsonPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48CB69B01C43AA6E00B45D53 /* AeroGearSyncClientJsonPatch.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
-		48CB69B31C43AA7200B45D53 /* AeroGearSyncJsonPatch.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 48CB69B21C43AA7200B45D53 /* AeroGearSyncJsonPatch.framework */; settings = {ATTRIBUTES = (Weak, ); }; };
 		94BF80A05B9137EA7FC5D230 /* Pods_AeroGearSyncDemoTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E220FD1E24DBD01ADAAD3BC2 /* Pods_AeroGearSyncDemoTests.framework */; };
 		C537FCB01A022A7F00CA79A0 /* Info.swift in Sources */ = {isa = PBXBuildFile; fileRef = C537FCAF1A022A7F00CA79A0 /* Info.swift */; };
 		C565E36A1A00EC5500EB2B1D /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = C565E3691A00EC5500EB2B1D /* AppDelegate.swift */; };
@@ -57,8 +55,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48CB69B31C43AA7200B45D53 /* AeroGearSyncJsonPatch.framework in Frameworks */,
-				48CB69B11C43AA6E00B45D53 /* AeroGearSyncClientJsonPatch.framework in Frameworks */,
 				F0850673CBF0EEE5A3C735F3 /* Pods.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -490,6 +486,7 @@
 				);
 				INFOPLIST_FILE = AeroGearSyncDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",
@@ -520,6 +517,7 @@
 				);
 				INFOPLIST_FILE = AeroGearSyncDemo/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
+				ONLY_ACTIVE_ARCH = YES;
 				OTHER_LDFLAGS = (
 					"$(inherited)",
 					"-framework",

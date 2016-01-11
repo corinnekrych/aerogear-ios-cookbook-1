@@ -7,7 +7,7 @@ use_frameworks!
 pod 'AeroGearSyncClientJsonPatch', :git => 'https://github.com/corinnekrych/aerogear-ios-sync-client', :branch => 'podspec.fixes'
 pod 'AeroGearSyncJsonPatch', :git => 'https://github.com/corinnekrych/aerogear-ios-sync', :branch => 'podspec.fixes'
 pod 'JSONTools', :git => 'https://github.com/corinnekrych/JSONTools', :branch => 'podspec.public.header'
-pod 'KiteJSONValidator/KiteJSONResources', :git => 'git@github.com:corinnekrych/KiteJSONValidator.git', :branch => 'podspec.public.header'
+pod 'KiteJSONValidator', :git => 'git@github.com:corinnekrych/KiteJSONValidator.git', :branch => 'podspec.public.header'
 
 target 'AeroGearSyncDemoTests' do
 	pod 'AeroGearSyncClientJsonPatch', :git => 'https://github.com/corinnekrych/aerogear-ios-sync-client', :branch => 'podspec.fixes'
