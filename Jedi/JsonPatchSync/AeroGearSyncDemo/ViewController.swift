@@ -16,8 +16,8 @@
 */
 
 import UIKit
-import AeroGearSync
-import AeroGearSyncClient
+import AeroGearSyncJsonPatch
+import AeroGearSyncClientJsonPatch
 
 class ViewController: UIViewController, UITextFieldDelegate {
 
